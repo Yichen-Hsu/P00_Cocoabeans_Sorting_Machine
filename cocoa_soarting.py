@@ -60,8 +60,10 @@ servo1.start(0)
 # servo2 = GPIO.PWM('pings', 50)
 # servo2.start(0)
 
+capture = cv2.VideoCapture(0)
 
-while True:
+
+while(capture.isOpened()):
     if pir.wait_for_motion():
         pir.wait_for_no_motion()
         print("Detected!")
@@ -95,11 +97,21 @@ while True:
             time.sleep(0.5)
             servo1.ChangeDutyCycle(0)
 
+    # camera showing on user platform
+    ret, frame = capture.read()
+    cv2.imshow('user_frame', frame)
+    c = cv2.waitKey(1)
+    if c == 27:
+        break
+    capture.release()
+    cv2.destroyAllWindows()
 
     # the conveyor keeps working 
     GPIO.output(ena, True)
     GPIO.output(n1, True)
     GPIO.output(n2, False)
+
+
   
 
 

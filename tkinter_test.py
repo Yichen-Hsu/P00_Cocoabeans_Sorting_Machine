@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import cv2 
 import os
 
@@ -19,11 +20,12 @@ def detect_on():
 window = Tk()
 window.title('Function Board')
 window.geometry("300x200")
-exitbt = Button(window, text="exit", command=window.destroy)
-camera = Button(window, text="camera test", command=detect_on)
+l1 = ttk.Label(text="hello world")
+exitbt = ttk.Button(window, text="exit", command=window.destroy)
+camera = ttk.Button(window, text="camera test", command=detect_on)
 exitbt.pack(anchor=S, side=RIGHT, padx=5, pady=5)
 camera.pack(anchor=S, side=RIGHT, padx=5, pady=5)
-
+l1.pack()
 window.mainloop()
 
 
